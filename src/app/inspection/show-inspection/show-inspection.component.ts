@@ -29,6 +29,22 @@ export class ShowInspectionComponent implements OnInit{
   activateAddEditInspectionComponent:boolean = false;
   inspection:any;
 
+  addModal(){
+    this.modalTitle = "Add Inspection";
+    this.activateAddEditInspectionComponent = true;
+    this.inspection = {
+      id:0,
+      status:null,
+      comments:null,
+      inspectionTypeId:null,
+    }
+  }
+
+  closeModal(){
+    this.activateAddEditInspectionComponent = false;
+    this.inspectionList$ = this.service.getInspectionList();
+  }
+
   refreshInspectionTypesMap(){
     this.service.getInspectionTypesList().subscribe(data => {
       this.inspectionTypeList = data;
